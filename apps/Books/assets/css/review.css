@@ -1,0 +1,59 @@
+.review {
+    margin: 0 auto;
+    margin-bottom: 15px;
+    border-bottom: 2px solid black;
+    text-align: center;
+    justify-content: center;
+    padding: 15px 0;
+    width: 90%;
+
+}
+
+.review>div {
+    margin: 7px 0;
+}
+
+.review-date {
+    font-size: 0.7rem;
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.review-txt {
+    font-size: 1rem;
+}
+
+.btn {
+    box-shadow: inset 0px 1px 3px 0px #91b8b3;
+    background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    border-radius: 5px;
+    border: 1px solid #566963;
+    cursor: pointer;
+    color: #ffffff;
+    padding: 3px 20px;
+}
+
+.delete-btn {
+    margin-top: 10px;
+   
+}
+
+.btn:hover {
+    background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+    background-color: #6c7c7c;
+}
+
+.btn:active {
+    position: relative;
+    top: 1px;
+}
+
+.reviews-container{
+    width: 500px;
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    border:2px solid black;
+    margin:5px;
+}

@@ -1,3 +1,4 @@
+import { MissNotes } from "../apps/Notes/pages/MissNotes.jsx"
 
 export class NotesApp extends React.Component {
     state = {
@@ -21,6 +22,7 @@ export class NotesApp extends React.Component {
         return (
             <section>
                 <h1>notes</h1>
+                <MissNotes />
             </section>
         )
     }

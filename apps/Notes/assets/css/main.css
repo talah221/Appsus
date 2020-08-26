@@ -1,0 +1,15 @@
+.note-list{
+    list-style: none;
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    padding: 1.5625rem 3.125rem 1.5625rem 3.125rem;
+
+}
+.note-card{
+    background-color: lightgrey;
+    border-radius: 1rem;
+    text-align: center;
+    min-height: 2rem;
+    padding: 0.5rem;
+}

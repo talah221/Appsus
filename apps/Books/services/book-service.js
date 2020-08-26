@@ -478,8 +478,6 @@ function addGoogleBook(bookFromGoogle) {
 
 }
 
-
-
 function query(filterBy) {
     let booksToReturn;
     if (filterBy) {

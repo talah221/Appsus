@@ -1,7 +1,7 @@
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
 import { BookDetails } from '../apps/Books/pages/BookDetails.jsx'
-import { MissBooks } from '../apps/Books/pages/MissBooks.jsx'
+// import { MissBooks } from '../apps/Books/pages/MissBooks.jsx'
 
 export class BooksApp extends React.Component {
 
@@ -13,7 +13,6 @@ export class BooksApp extends React.Component {
                     <main>
                         <Switch>
                             <Route component={BookDetails} path="/book/:bookId" />
-                            <Route component={MissBooks} path="/book" />
                         </Switch>
                     </main>
 

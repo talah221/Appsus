@@ -1,0 +1,43 @@
+@import './helpers.css';
+
+.mail-preview {
+    max-width: 80%;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgb(196, 196, 196);
+}
+
+.mail-preview:hover {}
+
+
+.mail-title{
+    cursor: pointer;
+}
+
+.mails-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mail-list{
+    border: 1px solid black;
+    width:60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.new-mail {
+    font-weight: bold;
+}
+
+.old-mail {
+    font-weight: normal;
+}
+
+.del-btn{
+    cursor: pointer;
+}
+
+
+
+

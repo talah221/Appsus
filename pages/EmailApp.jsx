@@ -1,27 +1,21 @@
+const Router = ReactRouterDOM.HashRouter
+const { Route } = ReactRouterDOM
+import { MisterEmail } from '../apps/Mail/pages/MisterEmail.jsx'
 
 export class EmailApp extends React.Component {
-    state = {
-        email: ''
-    }
-
-    componentDidMount() {
-
-    }
-
-    loadMails = () => {
-
-    }
-    onSetFilter = () => {
-
-    }
-
 
     render() {
-        const { email } = this.state
         return (
-            <section>
-                <h1>mails</h1>
-            </section>
+            <div>
+                <Router>
+                    <header></header>
+                    <main>
+                            <Route component={MisterEmail} path="/email" />
+                    </main>
+
+                </Router>
+            </div>
         )
     }
 }
+

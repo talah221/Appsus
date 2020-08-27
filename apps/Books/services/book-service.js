@@ -5,7 +5,7 @@ export const bookService = {
     deleteReview,
     getResult,
     addGoogleBook,
-    getNextPrev
+    getNextPrev,
 
 
 }

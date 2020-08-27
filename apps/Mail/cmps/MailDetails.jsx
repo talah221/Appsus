@@ -2,14 +2,6 @@
 
 export class MailDetails extends React.Component {
 
-    state = {
-
-    }
-    componentDidMount() {
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-    }
 
     render() {
         const {mail} = this.props

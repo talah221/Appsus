@@ -1,43 +1,73 @@
 @import './helpers.css';
-
 .mail-preview {
-    max-width: 80%;
-    margin-bottom: 10px;
     padding-bottom: 5px;
     border-bottom: 1px solid rgb(196, 196, 196);
+    cursor: pointer;
 }
 
 .mail-preview:hover {}
 
-
-.mail-title{
+.mail-title {
     cursor: pointer;
 }
 
-.mails-container{
+.mails-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.mail-list{
+
+.mail-list {
     border: 1px solid black;
-    width:60%;
+    width: 85%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #fbfdfe;
 }
+
 .new-mail {
     font-weight: bold;
 }
 
 .old-mail {
     font-weight: normal;
+    background-color: #eef4f5;
 }
 
-.del-btn{
+.del-btn {
     cursor: pointer;
 }
 
+.mail-line {
+    list-style: none
+}
 
+.mail-title-subject {
+    position: absolute;
+    left: 40%;
+}
 
+.created-at{
+    position: absolute;
+    left: 85%;
+}
+.star {
+    color: white;
+    background-image: url(https://www.gstatic.com/images/icons/material/system/1x/star_border_black_20dp.png);
+    background-size: 15px;
+    content: '';
+}
 
+.full-star {
+    color: white;
+    content: '';
+    background-size: 15px;
+    background-image: url(https://www.gstatic.com/images/icons/material/system/1x/star_googyellow500_20dp.png);
+}
+
+.editor-container{
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}

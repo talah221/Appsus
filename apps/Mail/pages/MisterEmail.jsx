@@ -12,7 +12,8 @@ export class MisterEmail extends React.Component {
     state = {
         filterBy: { txt: '', isRead: 'all' },
         mails: null,
-        percentage: 0
+        percentage: 0,
+        isComposing: false
     }
 
     componentDidMount() {
@@ -26,6 +27,7 @@ export class MisterEmail extends React.Component {
                 this.setState({ mails })
 
             })
+        console.log('loading-mails');
     }
     onSetFilter = (value, name) => {
         this.setState({ filterBy: { ...this.state.filterBy, [name]: value } }, this.loadMails)
@@ -51,13 +53,20 @@ export class MisterEmail extends React.Component {
         this.setEmailStatus()
 
     }
+
+    toggleCompose = () => {
+        this.setState({ isComposing: !this.state.isComposing })
+    }
     render() {
-        const { mails, percentage } = this.state
+        const { mails, percentage, isComposing } = this.state
 
         return (
             <section className="mails-container">
-                <MailCompose />
-                <MailFilter onSetFilter={this.onSetFilter} />
+                <div className="editor-container">
+                    <div><button onClick={this.toggleCompose}>Compose</button></div>
+                    <div>{isComposing && < MailCompose loadMails={this.loadMails} />}</div>
+                    <MailFilter onSetFilter={this.onSetFilter} />
+                </div>
                 {mails && mails.length > 0 && <MailsList mails={mails} deleteMail={this.onDeleteMail} makeMailReaded={this.makeMailReaded} />}
                 {mails && <MailStatus percentage={percentage} />}
             </section>

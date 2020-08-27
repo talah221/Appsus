@@ -1,14 +1,12 @@
 import {NoteTxt} from './NoteTxt.jsx'
+import { NoteImg } from './NoteImg.jsx';
 export function NoteType({ note }) {
-    console.log(note);
 
     switch (note.type) {
         case 'NoteText':
     return  <NoteTxt note={note}/>
-
-        // <NoteTxt   note = {note} /> 
-        // case 'GoodBye':
-        // return <GoodBye {...props} />
+        case 'NoteImg':
+        return <NoteImg note = {note} />
         // case 'WelcomeBack':
         // return <WelcomeBack {...props} />
         default:

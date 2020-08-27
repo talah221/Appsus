@@ -1,43 +1,48 @@
-import { NoteService } from '../services/note-service.js'
-import { storageService } from '../../../services/storageService.js';
+import { NoteService } from "../services/note-service.js";
+import { storageService } from "../../../services/storageService.js";
 
 export class NoteAdd extends React.Component {
+  state = {
+    note: "",
+    color:'#rrggbb',
+    type:'NoteText',
+  };
+  txtHandleChange = (event) => {
+    this.setState({ note: event.target.value });
+  };
+  colorHandleChange = (event) => {
+    this.setState({ color: event.target.value });
+    // console.log(this.state.color);
+  };
 
-    state = {
-        notes: ''
-    }
-    handleChange = (event) =>{
-        this.setState({ notes: event.target.value });
-      }
+  handleSubmit = () => {
+    this.addNote();
     
-      handleSubmit = () => {
-        this.addNote()
-        event.preventDefault();
-      }
-    addNote = () => {
-        console.log(this.state.notes);
-        NoteService.addNoteToLocal(this.state.notes)
-        this.props.onAddNote()
-        // this.setState({notes : ''})
-        // bookService.addGoogleBook(googleBook)
-        // this.props.onAddBook()
-        // eventBusService.emit('show-msg',googleBook.id)
+    event.preventDefault();
+  };
 
-    }
-    render() {
-        return (
-        // <form className="add-note" onSubmit={()=>console.log(this.target.value)}>
-        //     Write a note <input type="text" name="" id="" placeholder="Add a new note" />
-        //     <button>Add Me!</button>
+  addNote = ()=> {
+    // console.log(this.state.notes);
+    NoteService.addNoteToLocal(this.state.note, this.state.color, this.state.type);
+    this.props.onAddNote();
+    this.setState({ note: "", color: "#rrggbb" });
+
+  }
+  changeType = (val) =>{
+this.setState({type:val})
+console.log(val);
+  }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit} className={'make-note'}>
         
-            <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={this.state.notes} onChange={this.handleChange} />
-        </label>
+          Note:
+         <div> <input type="text" value={this.state.note} onChange={this.txtHandleChange} /></div>
+         <div><input type="color" value={this.state.color} onChange={this.colorHandleChange} /></div>
+          <div onClick={ ()=> this.changeType('NoteImg')}>image</div>
+          <div onClick={ ()=> this.changeType('NoteText')}>text</div>
         <input type="submit" value="Submit" />
       </form>
-        
-        )
-    }
+    );
+  }
 }

@@ -24,5 +24,5 @@ export const utilService={
 }
 
 function getRandomNum(){
-    return Math.floor(Math.random*200);
+    return Math.floor(Math.random*10000);
 }

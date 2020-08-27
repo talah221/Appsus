@@ -16,11 +16,15 @@ export class MissNotes extends React.Component {
         console.log('loading notes');
         NoteService.query()
             .then(notes => {
-                console.log(notes);
+                // console.log(notes);
                 this.setState({ notes });
             })
     }
-
+    deleteNote = (id) => {
+        console.log(id);
+        NoteService.deleteNoteFromLoc(id)
+        this.loadNotes()
+    }
     onSetFilter = () => {
     }
 
@@ -30,7 +34,7 @@ export class MissNotes extends React.Component {
         return (
             <section>
                 <NoteAdd onAddNote={this.loadNotes}/>
-                <NoteList notes={notes} />
+                <NoteList notes={notes} onDeleteNote={this.deleteNote} />
             </section>
         )
     }

@@ -32,7 +32,9 @@ export class MailPreview extends React.Component {
     }
 
     onToggleCheck = (ev) => {
+        const { mail } = this.props
         ev.stopPropagation()
+        this.props.toggleCheck(mail.id)
 
     }
 
@@ -52,7 +54,7 @@ export class MailPreview extends React.Component {
         return (
             <article className={`mail-preview ${mail.isRead ? 'old-mail' : 'new-mail'}`} onClick={this.onToggleMail} >
                 <span>
-                    <input type="checkbox" onClick={this.checkMail} name="" id="" />
+                    <input type="checkbox" onClick={this.onToggleCheck} name="" id="" />
                     <span onClick={this.toggleFavorites} className={`${isFavorite ? 'full-star' : 'star'}`}>.  .  </span>
                     {/* <a onClick={this.toggleFavorites}><i className={`${isFavorite ? 'fas' : 'far'} fa-star`}></i> </a> */}
                     <span className="mail-title" >

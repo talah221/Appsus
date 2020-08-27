@@ -1,6 +1,7 @@
 const Router = ReactRouterDOM.HashRouter
 const { Route } = ReactRouterDOM
 import { MisterEmail } from '../apps/Mail/pages/MisterEmail.jsx'
+// import {MailPreview} from '../apps/Mail/cmps/MailPreview.jsx'
 
 export class EmailApp extends React.Component {
 
@@ -11,6 +12,7 @@ export class EmailApp extends React.Component {
                     <header></header>
                     <main>
                             <Route component={MisterEmail} path="/email" />
+                            {/* <Route component={MailPreview} path="/email/:id" /> */}
                     </main>
 
                 </Router>

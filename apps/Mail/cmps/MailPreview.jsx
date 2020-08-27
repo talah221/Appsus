@@ -4,49 +4,69 @@ import { misterEmailService } from '../services/misterEmail-service.js'
 
 export class MailPreview extends React.Component {
     state = {
-        mail: null,
+        mail: this.props.mail,
         isOpen: false
     }
-    toggleMail = () => {
+    onToggleMail = () => {
         const { mail } = this.state
         const updatedMail = mail
         updatedMail.isRead = true;
-        updatedMail.isOpen = !mail.isOpen
-        this.setState({ mail: updatedMail })
-        // this.setState({ ...mail, isRead: true })
+        this.setState({ mail: updatedMail, isOpen: !this.state.isOpen })
+        this.props.makeMailReaded(mail.id)
+        console.log(updatedMail);
+
     }
-
-
 
     onDeleteMail = (id) => {
+        const { mail } = this.props
         this.props.deleteMail(id)
-        // misterEmailService.deleteMail(id)
+        this.setState({ mail })
     }
-
     componentDidMount() {
-        this.setState({ mail: this.props.mail })
+        const { mail } = this.props
+        this.setState({ mail })
     }
-    // { id: 2, username: 'Warren Buffet', usermail: 'WarrenBuffet@BerkshireHathaway.com', 
-    // subject: 'My Will', body: 'Hey Tal, i\'de like to give you all my property.',
-    //  isOpen: false, isRead: false, sentAt: 1551130930594 },]
-
 
     render() {
-        const { mail } = this.props
+        const { mail, isOpen } = this.state
         return (
             <article className="mail-preview" >
                 <span>
                     <input type="checkbox" name="" id="" />
                     <a>♥ </a>
                     <a>Imp? </a>
-                    <span className="mail-title" onClick={this.toggleMail}>
+                    <span className="mail-title" onClick={this.onToggleMail}>
                         <span>{mail.username} </span>
                         <span className={`subject ${mail.isRead ? 'old-mail' : 'new-mail'}`}>{mail.subject} </span>
                     </span>
-                    {mail.isOpen && <MailDetails mail={mail} deleteMail={this.onDeleteMail} />}
+                    {isOpen && <MailDetails mail={mail} deleteMail={this.onDeleteMail} />}
                 </span>
             </article>
         );
     }
 }
 
+
+
+
+
+
+// const { Link } = ReactRouterDOM
+// export function MailPreview({ mail, deleteMail, toggleMail }) {
+
+
+//     return <Link to={`/mail/${mail.id}`}>
+//         <article className="mail-preview" >
+//             <span>
+//                 <input type="checkbox" name="" id="" />
+//                 <a>♥ </a>
+//                 <a>Imp? </a>
+//                 <span className="mail-title" onClick={() => toggleMail(mail.id)}>
+//                     <span>{mail.username} </span>
+//                     <span className={`subject ${mail.isRead ? 'old-mail' : 'new-mail'}`}>{mail.subject} </span>
+//                 </span>
+//                 {mail.isOpen && <MailDetails mail={mail} deleteMail={deleteMail} />}
+//             </span>
+//         </article>
+//     </Link>
+// }

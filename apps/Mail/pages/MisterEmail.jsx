@@ -4,12 +4,15 @@ const { Route, Switch } = ReactRouterDOM
 
 import { misterEmailService } from '../services/misterEmail-service.js'
 import { MailsList } from '../cmps/MailsList.jsx'
-import { EmailStatus } from '../cmps/EmailStatus.jsx'
+import { MailStatus } from '../cmps/MailStatus.jsx'
+import { MailFilter } from '../cmps/MailFilter.jsx'
+import { MailCompose } from '../cmps/MailCompose.jsx'
 
 export class MisterEmail extends React.Component {
     state = {
-        filterBy: '',
-        mails: null
+        filterBy: { txt: '', isRead: 'all' },
+        mails: null,
+        percentage: 0
     }
 
     componentDidMount() {
@@ -18,13 +21,16 @@ export class MisterEmail extends React.Component {
     }
 
     loadMails = () => {
-        misterEmailService.query(this.state.filterBy).then(mails => {
-            this.setState({ mails })
+        misterEmailService.query(this.state.filterBy)
+            .then(mails => {
+                this.setState({ mails })
 
-        })
+            })
     }
-    onSetFilter = (params) => {
+    onSetFilter = (value, name) => {
+        this.setState({ filterBy: { ...this.state.filterBy, [name]: value } }, this.loadMails)
 
+        // this.props.history.push(`/book?filterBy=${value}`)
 
     }
 
@@ -33,15 +39,27 @@ export class MisterEmail extends React.Component {
         this.loadMails()
 
     }
+    setEmailStatus = () => {
+        const percentage = misterEmailService.caculateReadedMails()
+        this.setState({ percentage })
 
+    }
 
+    makeMailReaded = (mailId) => {
+        misterEmailService.makeMailReaded(mailId)
+        this.loadMails()
+        this.setEmailStatus()
+
+    }
     render() {
-        const { mails } = this.state
+        const { mails, percentage } = this.state
 
         return (
             <section className="mails-container">
-                {mails && <MailsList mails={mails} deleteMail={this.onDeleteMail} />}
-                {mails && <EmailStatus mails={mails} />}
+                <MailCompose />
+                <MailFilter onSetFilter={this.onSetFilter} />
+                {mails && mails.length > 0 && <MailsList mails={mails} deleteMail={this.onDeleteMail} makeMailReaded={this.makeMailReaded} />}
+                {mails && <MailStatus percentage={percentage} />}
             </section>
         )
     }

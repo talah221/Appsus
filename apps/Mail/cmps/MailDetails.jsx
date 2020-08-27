@@ -6,15 +6,10 @@ export class MailDetails extends React.Component {
 
     }
     componentDidMount() {
-
     }
 
     componentDidUpdate(prevProps, prevState) {
-
     }
-
-
-
 
     render() {
         const {mail} = this.props

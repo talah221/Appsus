@@ -2,7 +2,6 @@
 @import '../../apps/Notes/assets/css/main.css';
 @import '../../apps/Books/assets/css/main.css';
 @import '../../apps/Mail/assets/css/main.css';
-
 *{
     box-sizing: border-box;
 }

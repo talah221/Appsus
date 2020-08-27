@@ -1,14 +1,18 @@
 import { NoteType } from './NoteType.jsx'
-export function NoteList( {notes, onDeleteNote}) {
+export function NoteList( {notes, onDeleteNote, openModal}) {
 
     // console.log(notes);
     return (
         <ul className="note-list">
-            { notes.map((note, idx) => 
-                <li className="note-card" key={ idx } style={{backgroundColor: `${note.info.bgc}`}}>
+            { notes.map((note) => 
+      
+                <li className="note-card"  key={ note.id } style={{backgroundColor: `${note.info.bgc}`}}>
                     <NoteType note={ note } />
                     <button onClick={()=>onDeleteNote(note.id)} >X</button>
-                </li>)
+                    <button onClick={()=>openModal(note.id)}>Edit</button>
+                </li>
+                
+                )
             }
         </ul>
     )

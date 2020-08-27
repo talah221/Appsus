@@ -3,19 +3,15 @@ import { storageService } from '../../../services/storageService.js';
 export const NoteService = {
     query,
     addNoteToLocal,
-    deleteNoteFromLoc
-    // getById,
+    deleteNoteFromLoc,
+    getById,
     // addNote,
 
 }
-var gNoteId ;
-function makeNoteId(){
-    gNoteId = storageService.loadFromStorage('noteList')? storageService.loadFromStorage('noteList').length +1 : 4  ;
-    return gNoteId
-}
+
 var dataNotes = [
     {
-        id : 1,
+        id : makeId(),
         type: "NoteText",
         isPinned: true,
         info: {
@@ -24,7 +20,7 @@ var dataNotes = [
         }
     },
     {
-        id : 2,
+        id : makeId(),
         type: "NoteImg",
         info: {
             bgc : '#rrggbb',
@@ -34,7 +30,7 @@ var dataNotes = [
       
     },
     {
-        id : 3,
+        id : makeId(),
         type: "NoteTodos",
         info: {
             bgc : '#rrggbb',
@@ -46,11 +42,24 @@ var dataNotes = [
         }
     }
 ];
+function getById(noteId) {
+    var notes = storageService.loadFromStorage('noteList')
+    var note = notes.find(note => note.id === noteId)
+    return note
+}
+function makeId(length = 5) {
+    var txt = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return txt;
+}
 function addNoteToLocal(noteTxt, color, type){
     switch (type) {
         case 'NoteText':
             var note =  {
-                id: makeNoteId(),
+                id: makeId(),
                 type: "NoteText",
                 isPinned: false,
                 info: {
@@ -61,7 +70,7 @@ function addNoteToLocal(noteTxt, color, type){
             break;
         case 'NoteImg':
           var note =  {
-                id : makeNoteId(),
+                id : makeId(),
                 type: "NoteImg",
                 isPinned: false,
                 info: {
@@ -75,15 +84,7 @@ function addNoteToLocal(noteTxt, color, type){
       
     }
   
-    // var note =  {
-    //     id: makeNoteId(),
-    //     type: "NoteText",
-    //     isPinned: false,
-    //     info: {
-    //         txt: noteTxt,
-    //         bgc : color
-    //     }
-    // }
+
     var notes = storageService.loadFromStorage('noteList')
     if (!notes) {
         storageService.saveToStorage('noteList', dataNotes)

@@ -1,8 +1,6 @@
 
 export function BookFilter(props) {
 
-    const elInput = React.createRef()
-
     return <section className="book-filter">
         <h2>Book Filter</h2>
         Book to search? <input name="name" type="text" className="title-search" placeholder="Filter by title" onChange={(ev) => {

@@ -8,7 +8,7 @@ export function Reviews({ bookReviews,deleteReview }) {
         {bookReviews.map((review, idx) => {
             const reviewStars = '⭐'.repeat(review.rate)
             const officialUser = review.fullName[0].toUpperCase() + review.fullName.substring(1, review.fullName.length)
-            return <div className="review" key={idx}>
+            return <div className="review" key={review.id}>
                 {review.fullName && <h4>Review from: {officialUser}</h4>}
                 {review.rate && <div className="stars">{reviewStars}</div>}
                 {review.txt && <div className="review-txt">{officialUser} telling: "{review.txt}"</div>}

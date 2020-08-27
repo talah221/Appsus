@@ -1,18 +1,46 @@
 export const misterEmailService = {
     query,
-    mailDelete
+    mailDelete,
+    makeMailReaded,
+    caculateReadedMails
 }
-const mails = [{ id: 1, username: 'Elon Mask', usermail: 'ElonMask@tesla.com', subject: 'Partnership', body: 'Hey mate, wanna be my partner?', isRead: false, isOpen: false, sentAt: 1551133930594 },
-{ id: 2, username: 'Warren Buffet', usermail: 'WarrenBuffet@BerkshireHathaway.com', subject: 'My Will', body: 'Hey Tal, i\'de like to give you all my property.', isOpen: false, isRead: false, sentAt: 1551130930594 },]
+const mails = [{
+    id: 2, username: 'Warren Buffet', usermail: 'WarrenBuffet@BerkshireHathaway.com',
+    subject: 'Will', body: 'Hey Tal, I\'d like to give you all my property.',
+    isRead: false, sentAt: 1551130930594
+},
+{
+    id: 3, username: 'Zoom', usermail: 'no-reply@zoom.us',
+    subject: 'Personal meeting room update', body: 'Tal Sasson has joined your Personal Meeting room',
+    isRead: false, sentAt: 1552130930594
+}
+]
 
 
 function query(filterBy) {
-    let mailsToReturn;
+    let status;
+    let mailsToReturn = []
+    if (filterBy.isRead === 'readed') status = true;
+    else if (filterBy.isRead === 'unreaded') status = false
+    else if (filterBy.isRead === 'all') {
+        console.log('im here');
+        return Promise.resolve(mails)
+
+    }
     if (filterBy) {
-        //TODO:filter mails and return them.
+        // mailsToReturn = mails.filter(mail => mail.body.toLowerCase().includes(filterBy.txt.toLowerCase()))
+        for (var i = 0; i < mails.length; i++) {
+            if (mails[i].body.toLowerCase().includes(filterBy.txt.toLowerCase())) {
+                mailsToReturn.push(mails[i])
+            }
+        }
+        mailsToReturn = mailsToReturn.filter(mail => { return mail.isRead === status })
+    }
+    else {
         mailsToReturn = mails
-    } else mailsToReturn = mails
-    // storageService.saveToStorage('books', booksToReturn)
+
+    }
+    // storageService.saveToStorage('mails', mailsToReturn)
     return Promise.resolve(mailsToReturn)
 }
 
@@ -20,4 +48,15 @@ function mailDelete(id) {
     const mailToDeleteIdx = mails.findIndex(mail => mail.id === id)
     mails.splice(mailToDeleteIdx, 1)
 
+}
+
+function makeMailReaded(id) {
+    const mailToEdit = mails.findIndex(mail => mail.id === id)
+    mails[mailToEdit].isRead = true
+}
+
+function caculateReadedMails() {
+    const numOfMails = mails.length;
+    const readedMails = mails.filter(mail => mail.isRead)
+    return (readedMails.length / numOfMails) * 100
 }

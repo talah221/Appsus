@@ -24,7 +24,7 @@ function query(filterBy) {
     else if (filterBy.isRead === 'unreaded') status = false
     else if (filterBy.isRead === 'all') {
         console.log('im here');
-        return Promise.resolve(mails)
+        
 
     }
     if (filterBy) {
@@ -34,7 +34,7 @@ function query(filterBy) {
                 mailsToReturn.push(mails[i])
             }
         }
-        mailsToReturn = mailsToReturn.filter(mail => { return mail.isRead === status })
+        mailsToReturn =  (filterBy.isRead === 'all')? mailsToReturn :mailsToReturn.filter(mail => { return mail.isRead === status })
     }
     else {
         mailsToReturn = mails

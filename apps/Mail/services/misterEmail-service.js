@@ -17,12 +17,15 @@ const mails = [{
 ]
 
 
+
+
 function query(filterBy) {
     let status;
     let mailsToReturn = []
     if (filterBy.isRead === 'readed') status = true;
     else if (filterBy.isRead === 'unreaded') status = false
     else if (filterBy.isRead === 'all') {
+
         console.log('im here');
         return Promise.resolve(mails)
 

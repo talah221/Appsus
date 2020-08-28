@@ -15,6 +15,8 @@ export class MissNotes extends React.Component {
     this.loadNotes();
   }
 
+  
+
   loadNotes = () => {
     NoteService.query().then((notes) => {
       this.setState({ notes });

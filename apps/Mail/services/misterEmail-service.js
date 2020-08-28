@@ -101,7 +101,7 @@ function toggleCheck(id) {
 function deleteChecked(arrToDel) {
     arrToDel.forEach(mailToDel => {
         const mailToDelIdx = mails.findIndex(mail => mail.id === mailToDel.id)
-        mails[mailToDelIdx].isChecked=false
+        mails[mailToDelIdx].isChecked = false
         mails.splice(mailToDelIdx, 1)
 
     })
@@ -139,14 +139,11 @@ function caculateReadedMails() {
 
 function addMail(subject, body) {
     gId++
-    mails.push({
-        id: gId, usermail: 'Tal@Gmail.com', subject, body, isRead: false, sentAt: Date.now()
-
-    })
+    const mailToAdd={id: gId,username:'Tal Lahyani', usermail: 'Tal@Gmail.com', subject, body, isRead: false, isChecked: false, sentAt: Date.now()}
+    mails.push(mailToAdd)
+    console.log(mailToAdd);
 }
 
-// {
-//     id: 1, username: 'Apple', usermail: 'no-reply@apple.com',
-//     subject: 'Reciept: Apple Music', body: 'Hey Tal, Here is your monthly reciept for Apple Music Subscription',
-//     isRead: false, sentAt: 1551130930594
-// },
+// id: 12, username: 'Linkedin', isChecked: false, usermail: 'linkedin@linkedin.com',
+//         subject: 'Yaron Biton has viewed your profile on linkedin', body: 'Yaron Biton has viewed your profile on linkedin',
+//         isRead: true, sentAt: 1251130930595

@@ -1,17 +1,18 @@
-import { utilService } from '../../../services/util-service.js';
 import { storageService } from '../../../services/storageService.js';
 export const NoteService = {
     query,
     addNoteToLocal,
     deleteNoteFromLoc,
     getById,
+    updateNoteToLocal,
     // addNote,
 
 }
+var gId = 15;
 
 var dataNotes = [
     {
-        id : makeId(),
+        id : 1,
         type: "NoteText",
         isPinned: true,
         info: {
@@ -20,7 +21,7 @@ var dataNotes = [
         }
     },
     {
-        id : makeId(),
+        id : 2,
         type: "NoteImg",
         info: {
             bgc : '#rrggbb',
@@ -30,7 +31,7 @@ var dataNotes = [
       
     },
     {
-        id : makeId(),
+        id : 3,
         type: "NoteTodos",
         info: {
             bgc : '#rrggbb',
@@ -42,19 +43,21 @@ var dataNotes = [
         }
     }
 ];
+
+function updateNoteToLocal(noteToUpdate) {
+    var notes = storageService.loadFromStorage('noteList')
+  notes =  notes.map((note)=> (note.id===noteToUpdate.id)? noteToUpdate : note)
+    storageService.saveToStorage('noteList', notes)
+}
+
 function getById(noteId) {
     var notes = storageService.loadFromStorage('noteList')
     var note = notes.find(note => note.id === noteId)
     return note
 }
-function makeId(length = 5) {
-    var txt = '';
-    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return txt;
-}
+
+
+
 function addNoteToLocal(noteTxt, color, type){
     switch (type) {
         case 'NoteText':
@@ -81,6 +84,17 @@ function addNoteToLocal(noteTxt, color, type){
               
             }
             break;
+            default:  var note =  {
+                id: makeId(),
+                type: "NoteText",
+                isPinned: false,
+                info: {
+                    txt: noteTxt,
+                    bgc : color
+                }
+            }
+        break;
+
       
     }
   
@@ -116,4 +130,12 @@ function query(filterBy) {
         notes = dataNotes
     }
     return Promise.resolve(notes)
+}
+function makeId(length = 5) {
+    var txt = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return txt;
 }

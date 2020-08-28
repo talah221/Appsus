@@ -4,7 +4,7 @@ export function NoteList( {notes, onDeleteNote, openModal}) {
     // console.log(notes);
     return (
         <ul className="note-list">
-            { notes.map((note) => 
+            { notes.map(note => 
       
                 <li className="note-card"  key={ note.id } style={{backgroundColor: `${note.info.bgc}`}}>
                     <NoteType note={ note } />

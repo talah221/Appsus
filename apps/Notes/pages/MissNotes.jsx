@@ -16,21 +16,17 @@ export class MissNotes extends React.Component {
   }
 
   loadNotes = () => {
-    console.log("loading notes");
     NoteService.query().then((notes) => {
-      // console.log(notes);
       this.setState({ notes });
     });
   };
   deleteNote = (id) => {
       event.preventDefault()
-    console.log(id);
     NoteService.deleteNoteFromLoc(id);
     this.loadNotes();
   };
   onSetFilter = () => {};
   onOpenModal = (id) => {
-    console.log(id);
     this.setState({ isModalOpen: !this.state.isModalOpen , currNoteId: id });
   };
   render() {
@@ -42,7 +38,7 @@ export class MissNotes extends React.Component {
         <NoteList notes={notes} onDeleteNote={this.deleteNote} openModal={this.onOpenModal}/>
          
           {isModalOpen&&<Modal open={isModalOpen} toggleModal={this.onOpenModal} >
-            <UpdateNote noteId={currNoteId} />
+            <UpdateNote noteId={currNoteId} toggleModal={this.onOpenModal} loadNotes={this.loadNotes}/>
           </Modal>}
         
       </section>

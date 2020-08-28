@@ -128,7 +128,7 @@ function toggleMark(arrToMark, val) {
 }
 function makeMailReaded(id) {
     const mailToEdit = mails.findIndex(mail => mail.id === id)
-    mails[mailToEdit].isRead = true
+    if (mails[mailToEdit]) mails[mailToEdit].isRead = true
 }
 
 function caculateReadedMails() {
@@ -139,7 +139,7 @@ function caculateReadedMails() {
 
 function addMail(subject, body) {
     gId++
-    const mailToAdd={id: gId,username:'Tal Lahyani', usermail: 'Tal@Gmail.com', subject, body, isRead: false, isChecked: false, sentAt: Date.now()}
+    const mailToAdd = { id: gId, username: 'Tal Lahyani', usermail: 'Tal@Gmail.com', subject, body, isRead: false, isChecked: false, sentAt: Date.now() }
     mails.push(mailToAdd)
     console.log(mailToAdd);
 }

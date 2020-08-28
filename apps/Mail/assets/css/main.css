@@ -19,7 +19,6 @@ body {
 }
 
 .mails-container {
-    display: flex;
     flex-direction: column;
     align-items: center;
 }
@@ -103,12 +102,12 @@ body {
 }
 
 .editor-container {
-    display: flex;
-    justify-content: right;
+    justify-content: center;
     width: 100%;
 }
 
 .compose-btn {
+
     appearance: none;
     background-color: #fafdfe;
     color: #63676c;

@@ -55,7 +55,16 @@ export class MailPreview extends React.Component {
             <article className={`mail-preview ${mail.isRead ? 'old-mail' : 'new-mail'}`} onClick={this.onToggleMail} >
                 <span>
                     <input type="checkbox" onClick={this.onToggleCheck} name="" id="" />
-                    <span onClick={this.toggleFavorites} className={`${isFavorite ? 'full-star' : 'star'}`}>.  .  </span>
+                    <span  //onClick={this.toggleFavorites}//
+                    >
+
+                        {!isFavorite && <i className="far fa-star mr-1"></i>}
+                    </span>
+{/* 
+                    <span onClick={this.toggleFavorites}>
+                        {isFavorite && <i className="fas fa-star"></i>}
+
+                    </span> */}
                     {/* <a onClick={this.toggleFavorites}><i className={`${isFavorite ? 'fas' : 'far'} fa-star`}></i> </a> */}
                     <span className="mail-title" >
                         <span className="mail-title-username">{mail.username} </span>

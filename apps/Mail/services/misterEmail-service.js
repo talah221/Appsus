@@ -101,6 +101,7 @@ function toggleCheck(id) {
 function deleteChecked(arrToDel) {
     arrToDel.forEach(mailToDel => {
         const mailToDelIdx = mails.findIndex(mail => mail.id === mailToDel.id)
+        mails[mailToDelIdx].isChecked=false
         mails.splice(mailToDelIdx, 1)
 
     })

@@ -98,9 +98,9 @@ export class MisterEmail extends React.Component {
 
 
         return (
-            <section className="mails-container">
-                <div className="editor-container">
-                    <div><button className="compose-btn" onClick={this.toggleCompose}><i className="fas fa-plus mr-1 red" ></i>Compose</button></div>
+            <section className="mails-container flex">
+                <div className="button-wrapper"><button className="compose-btn" onClick={this.toggleCompose}><i className="fas fa-plus mr-1 red" ></i>Compose</button></div>
+                <div className="editor-container flex">
                     <div>{isComposing && < MailCompose loadMails={this.loadMails} />}</div>
                     <MailFilter onSetFilter={this.onSetFilter} />
                 </div>

@@ -40,11 +40,11 @@ const mails = [
         subject: '80% SALE All Categories for Rosh Hashana!', body: 'In honor of Rosh Hashanah, we are going on a crazy sale, so go ahead and realize the sale and you are welcome to the site at any given moment.. Just in case you needed another reason to refresh your wardrobUse code: HARTA-BARTA',
         isRead: true, sentAt: 1051130930594, isChecked: false
     }, {
-        id: 7, username: 'Pornhub', isChecked: false, usermail: 'customerservice@pornhub.com',
+        id: 7, username: 'Puki', isChecked: false, usermail: 'customerservice@pornhub.com',
         subject: 'Your membership is about to end', body: 'Hello tal, your Premium Pornhub membership subscription is about to end in 2 days, so if you want to keep watching HD Videos please Renew your membership at harta-mail@pornhub.com',
         isRead: false, sentAt: 1251130930594
     }, {
-        id: 8, username: 'Daniel Dresner - Coding Academy', isChecked: false, usermail: 'daniel-dresner@gmail.com',
+        id: 8, username: 'Daniel- Coding Academy', isChecked: false, usermail: 'daniel-dresner@gmail.com',
         subject: 'bye-bentaim', body: 'bye-bentaim',
         isRead: false, sentAt: 1251210930594
     }, {
@@ -64,6 +64,11 @@ const mails = [
         subject: 'Yaron Biton has viewed your profile on linkedin', body: 'Yaron Biton has viewed your profile on linkedin',
         isRead: true, sentAt: 1251130930595
     },
+    {
+        id: 13, username: 'Your momma', usermail: 'Mother@mother.com', subject: 'Clean your room!',
+        body: 'You little piece of shit, dont forgert to clean your room, make the bed, and wash your windows!',
+        isRead: false, isChecked: false, sentAt: Date.now()
+    }
 
 
 ]
@@ -144,6 +149,4 @@ function addMail(subject, body) {
     console.log(mailToAdd);
 }
 
-// id: 12, username: 'Linkedin', isChecked: false, usermail: 'linkedin@linkedin.com',
-//         subject: 'Yaron Biton has viewed your profile on linkedin', body: 'Yaron Biton has viewed your profile on linkedin',
-//         isRead: true, sentAt: 1251130930595
+// 

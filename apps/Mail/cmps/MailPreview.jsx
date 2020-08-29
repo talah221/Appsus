@@ -53,6 +53,11 @@ export class MailPreview extends React.Component {
     toggleHover = () => {
         this.setState({ isHover: !this.state.isHover })
     }
+
+
+
+
+    
     render() {
         const { mail, isOpen, isFavorite, clockStr, isHover } = this.state
         return (

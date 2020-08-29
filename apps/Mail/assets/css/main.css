@@ -48,9 +48,8 @@ body {
 }
 
 .del-btn {
-    position: relative;
-    top: 10px;
-    right: 10px;
+    position: absolute;
+    right: 110px;
     cursor: pointer;
 }
 
@@ -155,4 +154,21 @@ body {
     margin:15px;
     justify-content: center;
     align-content: center;
+}
+
+@media(max-width:720px){
+    .mail-list{
+        width: 95%;
+    }
+    .mail-title-subject{
+        font-size: smaller;
+    }
+    .mail-title-username{
+        font-size: smaller;
+    }
+
+    .created-at{
+        font-size: smaller;
+        left: 91%;
+    }
 }

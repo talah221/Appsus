@@ -1,11 +1,14 @@
 import { MailDetails } from "./MailDetails.jsx";
 import { misterEmailService } from '../services/misterEmail-service.js'
+import { HoverController } from "./HoverController.jsx";
 
 
 export class MailPreview extends React.Component {
     state = {
         mail: this.props.mail,
         isOpen: false,
+        clockStr: '',
+        isHover: false
     }
     onToggleMail = () => {
         const { mail } = this.state
@@ -24,6 +27,7 @@ export class MailPreview extends React.Component {
     componentDidMount() {
         const { mail } = this.props
         this.setState({ mail })
+        this.makeClock()
     }
     toggleFavorites = (ev) => {
         ev.stopPropagation()
@@ -38,21 +42,21 @@ export class MailPreview extends React.Component {
 
     }
 
-    getFormattedMinutes = () => {
-        const { mail } = this.state
-        const timestamp = new Date(mail.sentAt)
-        return timestamp.getMinutes()
-    }
 
-    getFormattedHours = () => {
+    makeClock = () => {
         const { mail } = this.state
-        const timestamp = new Date(mail.sentAt)
-        return timestamp.getHours()
+        const hours = new Date(mail.sentAt).getHours()
+        const minutes = new Date(mail.sentAt).getMinutes()
+        const clockStr = `${hours}:${minutes}`
+        this.setState({ clockStr })
+    }
+    toggleHover = () => {
+        this.setState({ isHover: !this.state.isHover })
     }
     render() {
-        const { mail, isOpen, isFavorite } = this.state
+        const { mail, isOpen, isFavorite, clockStr, isHover } = this.state
         return (
-            <article className={`mail-preview ${mail.isRead ? 'old-mail' : 'new-mail'}`} onClick={this.onToggleMail} >
+            <article onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} className={`mail-preview ${mail.isRead ? 'old-mail' : 'new-mail'}`} onClick={this.onToggleMail} >
                 <span>
                     <input type="checkbox" onClick={this.onToggleCheck} name="" id="" />
                     <span  //onClick={this.toggleFavorites}//
@@ -60,20 +64,20 @@ export class MailPreview extends React.Component {
 
                         {!isFavorite && <i className="far fa-star mr-1"></i>}
                     </span>
-{/* 
+                    {/* 
                     <span onClick={this.toggleFavorites}>
                         {isFavorite && <i className="fas fa-star"></i>}
 
                     </span> */}
                     {/* <a onClick={this.toggleFavorites}><i className={`${isFavorite ? 'fas' : 'far'} fa-star`}></i> </a> */}
-                    <span className="mail-title" >
+                    {!isOpen && <span className="mail-title" >
                         <span className="mail-title-username">{mail.username} </span>
                         <span className={`mail-title-subject ${mail.isRead ? 'old-mail' : 'new-mail'}`}>{mail.subject} </span>
-                        <span className="created-at">{this.getFormattedHours()}:{this.getFormattedMinutes()}</span>
-                    </span>
-
-                    {isOpen && <MailDetails mail={mail} deleteMail={this.onDeleteMail} />}
+                        <span className="created-at">{clockStr}</span>
+                    </span>}
+                    {isOpen && <MailDetails mail={mail} deleteMail={this.onDeleteMail} clock={clockStr} />}
                 </span>
+                    {/* {isHover && <HoverController deleteMail={this.onDeleteMail} mail={mail} />} */}
             </article>
         );
     }

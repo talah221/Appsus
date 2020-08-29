@@ -21,6 +21,7 @@ export class MisterEmail extends React.Component {
 
     componentDidMount() {
         this.loadMails()
+        this.setEmailStatus()
 
     }
 
@@ -30,7 +31,6 @@ export class MisterEmail extends React.Component {
                 this.setState({ mails })
 
             })
-        console.log('loading-mails');
     }
     onSetFilter = (value, name) => {
         console.log(value);
@@ -81,15 +81,13 @@ export class MisterEmail extends React.Component {
     onDeleteChecked = () => {
         misterEmailService.deleteChecked(this.state.checkedMails)
         this.loadMails()
+        this.setEmailStatus()
     }
 
-    onDeleteChecked = () => {
-        misterEmailService.deleteChecked(this.state.checkedMails)
-        this.loadMails()
-    }
     onToggleMark = (ev) => {
         misterEmailService.toggleMark(this.state.checkedMails, ev.target.value)
         this.loadMails()
+        this.setEmailStatus()
     }
 
 
@@ -101,11 +99,11 @@ export class MisterEmail extends React.Component {
             <section className="mails-container flex">
                 <div className="button-wrapper"><button className="compose-btn" onClick={this.toggleCompose}><i className="fas fa-plus mr-1 red" ></i>Compose</button></div>
                 <div className="editor-container flex">
-                    <div>{isComposing && < MailCompose loadMails={this.loadMails} />}</div>
                     <MailFilter onSetFilter={this.onSetFilter} />
                 </div>
                 {anyChecked && < MailController deleteMails={this.onDeleteChecked} toggleMark={this.onToggleMark} />}
-                {mails && mails.length > 0 && <MailsList toggleCheck={this.toggleCheck} mails={mails} deleteMail={this.onDeleteMail} makeMailReaded={this.makeMailReaded} />}
+                <div>{isComposing && < MailCompose loadMails={this.loadMails} toggleCompose={this.toggleCompose} />}</div>
+                { mails && mails.length > 0 && <MailsList toggleCheck={this.toggleCheck} mails={mails} deleteMail={this.onDeleteMail} makeMailReaded={this.makeMailReaded} />}
                 {mails && <MailStatus percentage={percentage.toFixed(1)} />}
             </section>
         )

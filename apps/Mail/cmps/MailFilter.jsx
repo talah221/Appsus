@@ -21,7 +21,7 @@
 export class MailFilter extends React.Component {
 
     state = {
-        filterBy: ''
+        filterBy: 'all'
     }
     setActive = (value, name) => {
         const { onSetFilter } = this.props

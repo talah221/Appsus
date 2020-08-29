@@ -12,7 +12,7 @@ export class UserMsg extends React.Component {
         this.setState({ isShown: false })
     }
     componentDidMount() {
-        this.msg = eventBusService.on('show-msg', (id) => this.setState({ isShown: true, id }))
+        this.msg = eventBusService.on('show-msg', (status, id) => this.setState({ isShown: true, isMsgTrue: status, id }))
     }
     render() {
         return (

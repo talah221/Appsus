@@ -1,17 +1,31 @@
+@font-face {
+    font-family: 'Armino';
+    src: url("../../../../assets/Fonts/Arimo/Arimo-Regular.ttf") ;
+}
+@font-face {
+    font-family: 'OpenSans';
+    src: url("../../../../assets/Fonts/Open_Sans/OpenSans-Regular.ttf") ;
+}
+
 .note-list{
     list-style: none;
     display: grid;
     grid-gap: 15px;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     padding: 1.5625rem 3.125rem 1.5625rem 3.125rem;
 
 }
 .note-card{
-    background-color: lightgrey;
+    background-color: white;
     border-radius: 1rem;
     text-align: center;
-    min-height: 2rem;
-    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.note-li-btn{
+    all: unset;
+  cursor: pointer;
 }
 .make-note{
     display: flex;
@@ -30,9 +44,6 @@
     z-index: 5;
 }
 
-.hide {
-    display: none;
-}
 
 .modal-content {
     background: white;
@@ -40,5 +51,102 @@
     min-width: 80%;
     min-height: 400px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    position: relative;
+    display: block;
+
+}
+.modal-btn{
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row-reverse;
+
+
+}
+.modal-btn div h3{
+font-family:Armino;
+}
+.txt-edit{
+flex-wrap: wrap;
+}
+.note-image{
+    width: 50%;
+    height:250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0.5rem auto;
+}
+.note-image-list{
+    width: 90%;
+    height:90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding:3rem;
+    margin: 0 auto;
+}
+.todos-list{
+    list-style: none;
+    text-align: start;
+}
+.note-title{
+    display: block;
+    text-align: center;
+    font-family: ArMi;
+}
+
+/* FILTER */
+
+.note-search{
+margin: 1rem;
+border-color: #bbacac;
+font-size: 1rem;
+padding: 0.5rem;
+border-width: 1px;
+border-radius: 0.5rem;
+border-style: double;
+}
+/* MAKE NOTE */
+.make-note {
+    display: flex;
+    width:14.52rem;
+    margin: 1rem ;
+    background-color: white;
+    border-radius: 0.5rem;
+    width: 80vw;
+    justify-content: space-between;
+}
+.note-form{
+margin-left: 2rem;
+display: flex;
+}
+.note-textarea{
+    border-radius:10px !important;
+
+
+}
+
+.icons{
+    margin: 0.3rem;
+    cursor: pointer;
+}
+.icons:hover{
+    color: red !important;
+}
+
+/* HELPER */
+.display-none{
+    display: none ; 
+}
+.hide {
+    display: none;
+}
+.input-text{
+    margin: 1rem;
+border-color: #bbacac;
+font-size: 1rem;
+padding: 0.5rem;
+border-width: 1px;
+border-radius: 0.5rem;
+border-style: double;
 }

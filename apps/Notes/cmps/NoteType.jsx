@@ -1,5 +1,7 @@
 import {NoteTxt} from './NoteTxt.jsx'
 import { NoteImg } from './NoteImg.jsx';
+import { NoteTodo } from './NoteTodo.jsx';
+import { NoteVideo } from './NoteVideo.jsx';
 export function NoteType({ note }) {
 
     switch (note.type) {
@@ -7,8 +9,11 @@ export function NoteType({ note }) {
     return  <NoteTxt note={note}/>
         case 'NoteImg':
         return <NoteImg note = {note} />
-        // case 'WelcomeBack':
-        // return <WelcomeBack {...props} />
+        // case 'NoteTodos':
+        // return <NoteTodo note = {note} />
+        // default:
+        case 'NoteVideo':
+        return <NoteVideo note = {note} />
         default:
         return 'Under Construction!'
         //...some default error view

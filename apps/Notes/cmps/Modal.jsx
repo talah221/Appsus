@@ -16,7 +16,7 @@ export class Modal extends React.Component {
         return (
             <div className={ `modal-wrapper ${isShown ? '' : 'hide'}` } onClick={ toggleModal } >
                 <div className="modal-content" onClick={ (ev) => ev.stopPropagation() }>
-                    <button onClick={ toggleModal }>X</button>
+                    
                     { children }
                 </div>
             </div >

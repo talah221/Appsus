@@ -8,8 +8,12 @@ export function NoteList( {notes, onDeleteNote, openModal}) {
       
                 <li className="note-card"  key={ note.id } style={{backgroundColor: `${note.info.bgc}`}}>
                     <NoteType note={ note } />
-                    <button onClick={()=>onDeleteNote(note.id)} >X</button>
-                    <button onClick={()=>openModal(note.id)}>Edit</button>
+                    <div>
+                    <button className="note-li-btn" onClick={()=>onDeleteNote(note.id)} ><i className="fas fa-trash-alt icons"></i></button>
+                    <button className="note-li-btn" onClick={()=>openModal(note.id)}><i className="fas fa-edit icons"></i></button>
+</div>
+
+                    
                 </li>
                 
                 )

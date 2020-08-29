@@ -21,7 +21,6 @@ export class NotesApp extends React.Component {
         const { notes } = this.state
         return (
             <section>
-                <h1>notes</h1>
                 <MissNotes />
             </section>
         )

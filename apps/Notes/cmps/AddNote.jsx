@@ -34,14 +34,28 @@ console.log(val);
   }
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className={'make-note'}>
+      <form onSubmit={this.handleSubmit} className='make-note'>
+        <textarea style={{    borderRadius : '10px',border: 'none' }}placeholder="Start Typing.."  value={this.state.note} onChange={this.txtHandleChange} className="note-placeholer"></textarea>
+         {/* <div> <input type="text" value={this.state.note} onChange={this.txtHandleChange} className="note-placeholer" placeholder="Start Typing.."/></div> */}
+         <div className="note-form">
+           <label htmlFor="color">
+           <i className="fas fa-palette icons"></i>
+           </label>
+         <div><input type="color" id="color" className="display-none" value={this.state.color} onChange={this.colorHandleChange} /></div>
+         
+          <div onClick={ ()=> this.changeType('NoteImg')}><i className="far fa-image icons"></i></div>
+
+          <div onClick={ ()=> this.changeType('NoteText')}><i className="fas fa-font icons"></i></div>
+
+          {/* <div onClick={ ()=> this.changeType('NoteTodos')}>ToDo</div> */}
+          <div onClick={ ()=> this.changeType('NoteVideo')}><i className="fas fa-video icons"></i></div>
+          
+       
+          <label htmlFor="submit-note"><i className="far fa-sticky-note icons"></i>
+          </label>
+            <input type="submit" value="s" id="submit-note"  className="display-none"/>
+        </div>
         
-          Note:
-         <div> <input type="text" value={this.state.note} onChange={this.txtHandleChange} /></div>
-         <div><input type="color" value={this.state.color} onChange={this.colorHandleChange} /></div>
-          <div onClick={ ()=> this.changeType('NoteImg')}>image</div>
-          <div onClick={ ()=> this.changeType('NoteText')}>text</div>
-        <input type="submit" value="Submit" />
       </form>
     );
   }

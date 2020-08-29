@@ -25,12 +25,18 @@ export class EditTxtNote extends React.Component {
         const {note} = this.state
         return (
             <div>
-                a
+                  <p>{note.info.txt}</p>
                  <form onSubmit={this.handleSubmit} className={'update-note'}>
-                <div> <input type="text" value={note.info.txt} onChange={this.txtHandleChange} /></div>
-                <div><input type="color" value={note.info.bgc} onChange={this.colorHandleChange} /></div>
-                <div><input type="submit" value="Submit"/></div>
-                </form>
+                <div className="txt-edit"> 
+                  <input type="text" className="input-text" value={note.info.txt} onChange={this.txtHandleChange} /></div>
+                <div>
+                <label htmlFor='update-color'><i className="fas fa-palette icons"></i></label>
+                <div><input type="color" id='update-color' className="display-none" value={note.info.bgc} onChange={this.colorHandleChange} /></div>
+            
+                <label htmlFor="update-submit"><i className="far fa-save icons"></i></label>
+                <div><input id="update-submit" type="submit" className="display-none"  value="Submit"/></div>
+              </div> 
+               </form>
             </div>
         )
     }
